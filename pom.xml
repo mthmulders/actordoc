@@ -14,4 +14,9 @@
         <developerConnection>scm:git:git@github.com:mthmulders/actordoc.git</developerConnection>
     </scm>
 
+    <modules>
+        <module>actordoc-core</module>
+        <module>actordoc-maven</module>
+    </modules>
+
 </project>
