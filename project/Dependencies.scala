@@ -4,14 +4,20 @@ import Keys._
 object Dependencies {
 
   private val version = new {
-      val scalaTest       = "3.0.0"
+    val akka            = "2.5.4"
+    val asm             = "5.2"
+    val scalaTest       = "3.0.0"
   }
 
   private val library = new  {
-      val test  = "org.scalatest" %% "scalatest" % version.scalaTest % Test
+    val akka  = "com.typesafe.akka" %% "akka-actor" % version.akka
+    val asm   = "org.ow2.asm" % "asm" % version.asm
+    val test  = "org.scalatest" %% "scalatest" % version.scalaTest % Test
   }
 
   val coreDependencies: Seq[ModuleID] = Seq(
+    library.akka,
+    library.asm,
     library.test
   )
 
