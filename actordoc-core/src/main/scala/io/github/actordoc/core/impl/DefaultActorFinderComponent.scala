@@ -1,11 +1,12 @@
-package io.github.actordoc.core
+package io.github.actordoc.core.impl
 
 import java.nio.file.{Files, Path, Paths}
 
-import scala.collection.immutable.Seq
-
-import org.objectweb.asm.{ClassReader, ClassVisitor, Opcodes}
 import akka.actor.Actor
+import io.github.actordoc.core.ActorFinderComponent
+import org.objectweb.asm.{ClassReader, ClassVisitor, Opcodes}
+
+import scala.collection.immutable.Seq
 
 case class ClassInfo(className: String, isActor: Boolean)
 
