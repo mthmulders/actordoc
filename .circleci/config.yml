@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  build-java-8:
     docker:
       - image: circleci/openjdk:8-jdk
 
@@ -41,3 +41,26 @@ jobs:
           paths:
             - ~/.sbt
             - ./.ivy2/cache
+
+  quality-analysis:
+    docker:
+      - image: sonarsource/sonarcloud-scan:1.0.1
+    steps:
+      - checkout
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build-java-8
+  nightly:
+    triggers:
+      - schedule:
+          cron: "14 3 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build-java-8
+      - quality-analysis
