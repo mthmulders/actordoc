@@ -43,7 +43,7 @@ jobs:
             - ./.ivy2/cache
         
       - store_test_results:
-          path: "/actordoc-core/target/test-reports/"
+          path: "./actordoc-core/target/test-reports/"
 
   quality-analysis:
     docker:
