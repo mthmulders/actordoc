@@ -44,6 +44,9 @@ jobs:
         
       - store_test_results:
           path: "./actordoc-core/target/test-reports/"
+      - store_artifacts:
+          destination: "test-reports/unit-test"
+          path: "./actordoc-core/target/test-reports/"
 
   quality-analysis:
     docker:
