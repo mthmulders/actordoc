@@ -56,7 +56,7 @@ jobs:
 
       - run:
           name: Run SonarCloud analysis
-          command: /usr/bin/run-scanner.sh
+          command: SONAR_TOKEN=$SONAR_TOKEN /usr/bin/run-scanner.sh
 
 workflows:
   version: 2
