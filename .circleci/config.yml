@@ -56,7 +56,10 @@ jobs:
 
       - run:
           name: Run SonarCloud analysis
-          command: SONAR_TOKEN=$SONAR_LOGIN /usr/bin/run-scanner.sh
+          environment:
+            SONAR_TOKEN: $SONAR_LOGIN
+            BITBUCKET_CLONE_DIR: $CIRCLE_WORKING_DIRECTORY
+          command: /usr/bin/run-scanner.sh
 
 workflows:
   version: 2
