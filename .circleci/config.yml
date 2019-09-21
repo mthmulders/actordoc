@@ -59,7 +59,8 @@ jobs:
           environment:
             SONAR_TOKEN: $SONAR_LOGIN
             BITBUCKET_CLONE_DIR: $CIRCLE_WORKING_DIRECTORY
-          command: /usr/bin/run-scanner.sh -Dsonar.host.url=https://sonarcloud.io
+            EXTRA_ARGS: -Dsonar.host.url=https://sonarcloud.io
+          command: /usr/bin/run-scanner.sh
 
 workflows:
   version: 2
