@@ -50,17 +50,30 @@ jobs:
 
   quality-analysis:
     docker:
-      - image: sonarsource/sonarcloud-scan:1.0.1
+      - image: circleci/openjdk:8-jdk
     steps:
       - checkout
 
       - run:
-          name: Run SonarCloud analysis
+          name: Install Sonar Scanner
+          command: |
+            mkdir -p ~/tools
+            pushd ~/tools
+            wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
+            unzip -qo sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
+            popd
           environment:
-            SONAR_TOKEN: $SONAR_LOGIN
-            BITBUCKET_CLONE_DIR: $CIRCLE_WORKING_DIRECTORY
-            EXTRA_ARGS: -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=mthmulders_actordoc -Dsonar.organization=mthmulders-github -Dsonar.login=$SONAR_LOGIN -Dsonar.password="" --debug
-          command: /usr/bin/run-scanner.sh
+            SONAR_SCANNER_VERSION: 4.0.0.1744
+
+      - run:
+          name: Run code analysis
+          environment:
+            SBT_OPTS: -Xms512m -Xmx3G
+          command: |
+            sbt coverageReport scapegoat
+            SONAR_SCANNER_HOME=~/tools/sonar-scanner-$SONAR_SCANNER_VERSION-linux sbt -Dsonar.login=$SONAR_LOGIN sonarScan
+          environment:
+            SONAR_SCANNER_VERSION: 4.0.0.1744
 
 workflows:
   version: 2
