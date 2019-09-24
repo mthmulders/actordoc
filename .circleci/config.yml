@@ -54,6 +54,16 @@ jobs:
     steps:
       - checkout
 
+      - restore_cache:
+          key: >
+            actordoc-v1-{{ .Branch }}
+            -{{ checksum "build.sbt" }}
+            -{{ checksum "project/build.properties" }}
+            -{{ checksum "project/Dependencies.scala" }}
+            -{{ checksum "project/Settings.scala" }}
+            -{{ checksum "project/build.properties" }}
+            -{{ checksum "project/plugins.sbt" }}
+
       - run:
           name: Install Sonar Scanner
           command: |
