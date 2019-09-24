@@ -69,6 +69,7 @@ jobs:
           environment:
             SBT_OPTS: -Xms512m -Xmx3G
           command: |
+            sbt coverage test coverageOff
             sbt coverageReport scapegoat
             sbt -Dsonar.login=$SONAR_LOGIN sonarScan
 
