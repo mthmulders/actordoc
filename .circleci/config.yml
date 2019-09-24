@@ -59,7 +59,7 @@ jobs:
           environment:
             SONAR_TOKEN: $SONAR_LOGIN
             BITBUCKET_CLONE_DIR: $CIRCLE_WORKING_DIRECTORY
-            EXTRA_ARGS: -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=mthmulders_actordoc -Dsonar.organization=mthmulders-github --verbose
+            EXTRA_ARGS: -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=mthmulders_actordoc -Dsonar.organization=mthmulders-github --debug
           command: /usr/bin/run-scanner.sh
 
 workflows:
