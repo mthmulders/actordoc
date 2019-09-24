@@ -67,6 +67,7 @@ workflows:
   build:
     jobs:
       - build-java-8
+      - quality-analysis
   nightly:
     triggers:
       - schedule:
