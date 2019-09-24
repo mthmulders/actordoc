@@ -1,6 +1,7 @@
 import sbt._
 import Keys._
 import sbtassembly.AssemblyPlugin.autoImport._
+import com.sksamuel.scapegoat.sbt.ScapegoatSbtPlugin.autoImport._
 
 
 object Settings {
@@ -10,7 +11,8 @@ object Settings {
     version := "0.0.1" + sys.props.getOrElse("buildNumber", default="0-SNAPSHOT"),
     scalaVersion := "2.12.0",
     publishMavenStyle := true,
-    publishArtifact in Test := false
+    publishArtifact in Test := false,
+    scapegoatVersion in ThisBuild := "1.3.3",
   )
 
   lazy val testSettings = Seq(
