@@ -50,7 +50,7 @@ jobs:
 
   quality-analysis:
     docker:
-      - image: sonarsource/sonarcloud-scan:1.0.1
+      - image: sonarsource/sonarcloud-scan:1.1.0
     steps:
       - checkout
 
