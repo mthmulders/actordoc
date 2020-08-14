@@ -2,7 +2,10 @@
 
 Build status: [![Circle CI](https://circleci.com/gh/mthmulders/actordoc/tree/master.svg?style=svg)](https://circleci.com/gh/mthmulders/actordoc/tree/master)
 
-Code quality: [![Codacy Badge](https://api.codacy.com/project/badge/grade/576c9a344e4643ed921c19f2fb0aa5e6)](https://www.codacy.com/app/mthmulders/actordoc)
+[![SonarCloud quality gate](https://sonarcloud.io/api/project_badges/measure?project=mthmulders_actordoc&metric=alert_status)](https://sonarcloud.io/dashboard?id=mthmulders_actordoc)
+[![SonarCloud vulnerability count](https://sonarcloud.io/api/project_badges/measure?project=mthmulders_actordoc&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=mthmulders_actordoc)
+[![SonarCloud technical debt](https://sonarcloud.io/api/project_badges/measure?project=mthmulders_actordoc&metric=sqale_index)](https://sonarcloud.io/dashboard?id=mthmulders_actordoc)
+
 
 ## What is it?
 t.b.d.

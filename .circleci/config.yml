@@ -50,17 +50,28 @@ jobs:
 
   quality-analysis:
     docker:
-      - image: sonarsource/sonarcloud-scan:1.1.0
+      - image: circleci/openjdk:11-jdk
     steps:
       - checkout
 
+      - restore_cache:
+          key: >
+            actordoc-v1-{{ .Branch }}
+            -{{ checksum "build.sbt" }}
+            -{{ checksum "project/build.properties" }}
+            -{{ checksum "project/Dependencies.scala" }}
+            -{{ checksum "project/Settings.scala" }}
+            -{{ checksum "project/build.properties" }}
+            -{{ checksum "project/plugins.sbt" }}
+
       - run:
-          name: Run SonarCloud analysis
+          name: Run code analysis
           environment:
-            SONAR_TOKEN: $SONAR_LOGIN
-            BITBUCKET_CLONE_DIR: $CIRCLE_WORKING_DIRECTORY
-            EXTRA_ARGS: -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=mthmulders_actordoc -Dsonar.organization=mthmulders-github
-          command: /usr/bin/run-scanner.sh
+            SBT_OPTS: -Xms512m -Xmx3G
+          command: |
+            sbt coverage test coverageOff
+            sbt coverageReport scapegoat
+            sbt -Dsonar.login=$SONAR_LOGIN sonarScan
 
 workflows:
   version: 2

@@ -17,3 +17,12 @@ lazy val app = (project in file("actordoc-app")).
   settings(libraryDependencies ++= appDependencies).
   dependsOn(core).
   configs(Test)
+
+val root = (project in file(".")).
+  settings(Settings.settings: _*).
+  settings(Settings.sonarSettings).
+  settings(Seq(
+    name := "actordoc-parent"
+  )).
+  settings(aggregate in sonarScan := false).
+  aggregate(core, app, sbtPlugin)
